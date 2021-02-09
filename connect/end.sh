@@ -16,4 +16,12 @@ rm -rf /$dir/.zsh_history
 rm -rf /$dir/.python_history
 rm -rf /$dir/.CFUserTextEncoding
 
-echo 'eval $(/opt/homebrew/bin/brew shellenv)'
+echo ''
+
+str='eval $(/opt/homebrew/bin/brew shellenv)'
+
+echo "string : $str , to paste . already copied"
+
+echo -n $str | pbcopy
+
+echo ''
