@@ -4,10 +4,11 @@ sudo mkdir -p /usr/local/bin
 
 dir=Users/kaumi
 
-sudo ln -sf /$dir/my.sh        /usr/local/bin/my
-sudo ln -sf /$dir/end.sh       /usr/local/bin/end
-sudo ln -sf /$dir/searchfor.sh /usr/local/bin/searchfor
-sudo ln -sf /$dir/enablessh.sh /usr/local/bin/enablessh
+sudo ln -sf /$dir/my.sh          /usr/local/bin/my
+sudo ln -sf /$dir/end.sh         /usr/local/bin/end
+sudo ln -sf /$dir/rmsearchfor.sh /usr/local/bin/rmsearchfor
+sudo ln -sf /$dir/searchfor.sh   /usr/local/bin/searchfor
+sudo ln -sf /$dir/enablessh.sh   /usr/local/bin/enablessh
 
 sudo rm -f /usr/local/bin/brew
 
