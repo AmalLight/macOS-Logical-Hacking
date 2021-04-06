@@ -192,4 +192,4 @@ t,,,summarise2,,,<- summarise ( count = n () ),,,get count from prev. pipe group
 t,,,sample_n,,,<- sample_n ( matrix° , random° , replace = TF° ),,,,,,,,,darkblue,,,
 t,,,sample_n,,,,,,get random_rows_number° from matrix°,,,,,,,,,
 t,,,sample_frac,,,<- sample_frac ( matrix° , fraction° ),,,get fraction_float_number°,,,,,,darkblue,,,
-t,,,%>%,,,%>%°n°t°,,,pipe from Dplyr, Doesn't need to keep matrix to each step,,,,,,darkblue,,,
+t,,,%>%,,,%>%°n°t°,,,pipe from Dplyr, Doesn't need to keep matrix for each step,,,,,,darkblue,,,
