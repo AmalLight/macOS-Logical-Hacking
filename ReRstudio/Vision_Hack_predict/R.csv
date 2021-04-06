@@ -187,7 +187,7 @@ t,,,arrange,,,<- arrange ( matrix° , name° ),,,get order values from matrix° 
 t,,,arrange2,,,<- arrange ( matrix° , desc ( name° ) ),,,get desc values from matrix° name°,,,,,,,,,
 t,,,group_by,,,<- group_by ( matrix° , name° ),,,create multi dimensional matrix° using name°,,,,,,darkblue,,,
 t,,,summarise,,,<- summarise ( matrix° , new° = do° ( name° ) ),,,,,,,,,darkblue,,,
-t,,,summarise,,,,,,get new° colSum doing do° using name° from matrix°,,,,,,,,,
+t,,,summarise,,,,,,get new° using do° on name° from matrix°,,,,,,,,,
 t,,,summarise2,,,<- summarise ( count = n () ),,,get count from prev. pipe group_by,,,,,,,,,
 t,,,sample_n,,,<- sample_n ( matrix° , random° , replace = TF° ),,,,,,,,,darkblue,,,
 t,,,sample_n,,,,,,get random_rows_number° from matrix°,,,,,,,,,
