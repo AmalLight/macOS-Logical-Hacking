@@ -44,6 +44,12 @@ colnames ( saved2 )
 
 print ( '----------------------------------------' )
 
+paste ( 'levels : ' , levels ( saved1 ) )
+print ( '----------------------------------------' )
+paste ( 'levels : ' , levels ( saved2 ) )
+
+print ( '----------------------------------------' )
+
 typeof ( saved2 $ Customer.ID )
 typeof ( saved2 $ Mortgage )
 typeof ( saved2 $ Y )

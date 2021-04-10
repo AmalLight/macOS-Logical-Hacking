@@ -10,7 +10,7 @@ p,,,tidyverse,,,# install.packages ( "tidyverse" ) °n  library ( tidyverse ),,,
 p,,,Rfast,,,# install.packages( "Rfast" ) °n  library ( Rfast ),,,using Rfast,,,,,,darkblue,,,
 p,,,sjmisc,,,# install.packages( "sjmisc" ) °n  library ( sjmisc ),,,using sjmisc,,,,,,darkblue,,,
 p,,,Rfast,,,# install.packages( "readr" ) °n  library ( readr ),,,using readr,,,,,,darkblue,,,
-p,,,e1071,,,# install.packages( "e1071" ) °n  library( e1071 ),,,using e1071,,,,,,darkblue,,, 
+p,,,e1071,,,# install.packages( "e1071" ) °n  library ( e1071 ),,,using e1071,,,,,,darkblue,,,
 p,,,itidyverse,,,# sudo apt install -y libxml2-dev libcurl4-openssl-dev,,,install for tidyverse,,,,,,,,,
 p,,,iRfast,,,# sudo apt install -y libgsl-dev,,,install for Rfast,,,,,,,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
@@ -49,6 +49,12 @@ f,,,modex,,,modex <- function(x) {return ( sort(unique(x))[ which.max( table(x) 
 f,,,modex,,,,,,mode from x using table,,,,,,,,,
 f,,,skewnessx,,,skewnessx <- function(x) {,,,skewness from x , about skewed,,,,,,darkblue,,,
 f,,,skewnessx,,,return ( sum( (x-mean(x))^3 ) / ( length(x) * sd(x)^3 ) )},,,,,,,,,,,,
+f,,,standarizexy,,,standarizexy <- function(x,meany,sdy) {,,,,,,,,,darkblue,,,
+f,,,standarizexy,,,return ( (mean(x)-meany) / sex( sdy,length(x) ) )},,,,,,,,,,,,
+f,,,standarizexy,,,,,,standarize variables x for normal distribution using ,,,,,,,,,
+f,,,standarizexy,,,,,,meany and sdy from population y,,,,,,,,,
+f,,,sex,,,sex <- function(sdx,lenx) {return ( sdx / sqrt(lenx) )},,,,,,,,,darkblue,,,
+f,,,sex,,,,,,standard error from the standard deviation of x and the lenght of x,,,,,,,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
 #,,,#,,,#,,,|GET-FUNCTION|,,,#,,,#,,,#
 #,,,#,,,#,,,#,,,#,,,#,,,#
@@ -95,6 +101,7 @@ g,,,apply,,,<- apply ( list° , margin° , fun° ),,,get new matrix° with funct
 g,,,apply,,,,,,on margin° where 1 is done on each row and 2 is done on each column,,,,,,,,,
 g,,,lapply,,,<- lapply ( list° , fun° ),,,get new list° with function° executed on,,,,,,darkblue,,,
 g,,,sapply,,,<- sapply ( list° , fun° ),,,get new matrix from list° with function° executed on,,,,,,darkblue,,,
+g,,,column,,,<- matrix° [[ x° ]],,,get list from converted column x° of matrix°,,,,,,darkblue,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
 #,,,#,,,#,,,|SET-FUNCTION|,,,#,,,#,,,#
 #,,,#,,,#,,,#,,,#,,,#,,,#
@@ -163,9 +170,6 @@ m,,,rowSums,,,<- rowSums ( matrix° ),,,vector° with the row sums of matrix°,,
 m,,,rowMeans,,,<- rowMeans ( matrix° ),,,vector° with the row means of matrix°,,,,,,darkblue,,,
 m,,,rowMins,,,<- rowMins ( matrix° , value = TF° ),,,vector° with the row mins of matrix°,,,,,,darkblue,,,
 m,,,rowMaxs,,,<- rowMaxs ( matrix° , value = TF° ),,,vector° with the row maxs of matrix°,,,,,,darkblue,,,
-m,,,where,,,<- matrix° $ name° [ c ( TF° , TF° ) ],,,get matrix° name° where is True°°,,,,,,,,,
-m,,,set_where,,,matrix° $ name° [ c ( TF° , TF° ) ] <- °,,,,,,,,,,,,
-m,,,set_where,,,,,,set into the matrix° column name° a row variable° where is True°°,,,,,,,,,
 m,,,subset,,,<- subset ( matrix° , name° ==° value° ),,,,,,,,,darkblue,,,
 m,,,subset,,,,,,get from matrix° all rows variables where name° respect ==° value°,,,,,,,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
