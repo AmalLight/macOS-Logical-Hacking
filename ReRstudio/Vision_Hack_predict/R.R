@@ -20,11 +20,8 @@ paste ( 'y:' , y <- saved [[ 2 ]] )
 saved
 describe ( saved )
 
-vars <- function(x) {return ( sum( (x-mean(x))^2) / (length(x)-1) )}
-sds <- function(x) {return ( sqrt( vars(x) ) )}
-
 dependent <- function(x,y) {
-return ( mean(x-y) / (sds(x-y) / sqrt(length(x))) )}
+return ( mean(x-y) / (sd(x-y) / sqrt(length(x))) )}
 
 paste ( 'my t-value:' , tvalue <- dependent (x,y) )
 paste ( 'my size for p-value:' , size <- length(x)-1 )
