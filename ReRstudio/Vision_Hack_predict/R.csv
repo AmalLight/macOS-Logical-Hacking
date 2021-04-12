@@ -253,4 +253,4 @@ t,,,spread,,,,,,like inverse of gather, spread makes columns for each group by i
 #,,,#,,,#,,,|DATA-SCIENCE|,,,#,,,#,,,#
 #,,,#,,,#,,,#,,,#,,,#,,,#
 s,,,describe,,,describe ( matrix° ),,,describe matrix for data science experiments,,,,,,darkblue,,,
-s,,,ttest,,,t.test ( B° , A° , paired=TF° , alternative='°' ),,,conduce and ttest for dependence,,,,,,darkblue,,,
+s,,,ttest,,,t.test ( B° , A° , paired=TF° , alternative='°' ),,,conduce a ttest for dependence,,,,,,darkblue,,,
