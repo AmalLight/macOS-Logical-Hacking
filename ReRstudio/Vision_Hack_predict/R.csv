@@ -13,6 +13,7 @@ p,,,Rfast,,,# install.packages ( "readr" ) °n  library ( readr ),,,using readr,
 p,,,e1071,,,# install.packages ( "e1071" ) °n  library ( e1071 ),,,using e1071,,,,,,darkblue,,,
 p,,,psych,,,# install.packages ( "psych" ) °n  library ( psych ),,,using psych,,,,,,darkblue,,,
 p,,,pastecs,,,# install.packages ( "pastecs" ) °n  library ( pastecs ),,,using pastecs,,,,,,darkblue,,,
+p,,,ggplot2,,,# install.packages ( "ggplot2" ) °n  library ( ggplot2 ),,,using ggplot2,,,,,,darkblue,,,
 p,,,itidyverse,,,# sudo apt install -y libxml2-dev libcurl4-openssl-dev,,,install for tidyverse,,,,,,,,,
 p,,,iRfast,,,# sudo apt install -y libgsl-dev,,,install for Rfast,,,,,,,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
@@ -58,6 +59,10 @@ f,,,mode,,,mode <- function(x) {return ( sort(unique(x))[ which.max( table(x) ) 
 f,,,mode,,,,,,mode from x using table,,,,,,,,,
 f,,,skewness2,,,skewness2 <- function(x) {,,,skewness from x , about skewed,,,,,,darkblue,,,
 f,,,skewness2,,,return ( sum( (x-mean(x))^3 ) / ( length(x) * sds(x)^3 ) )},,,,,,,,,,,,
+f,,,sep,,,sep <- function() {,,,make separator,,,,,,darkblue,,,
+f,,,sep,,,print ( '' ),,,,,,,,,,,,
+f,,,sep,,,print ( '----------------------------------------------------' ),,,,,,,,,,,,
+f,,,sep,,,print ( '' ) },,,,,,,,,,,,
 f,,,ztest,,,ztest <- function(x,meany,sdy) {,,,,,,,,,darkblue,,,
 f,,,ztest,,,return ( (mean(x)-meany) / (sdy / sqrt(length(x))) )},,,,,,,,,,,,
 f,,,ztest,,,,,,standarize variables x for normal distribution using ,,,,,,,,,
@@ -66,9 +71,16 @@ f,,,ttest,,,ttest <- function(x,meany) {,,,,,,,,,darkblue,,,
 f,,,ttest,,,return ( (mean(x)-meany) / (sds(x) / sqrt(length(x))) )},,,,,,,,,,,,
 f,,,ttest,,,,,,standarize variables x for normal distribution using ,,,,,,,,,
 f,,,ttest,,,,,,meany from population of y and sds from sample of y,,,,,,,,,
-f,,,dependent,,,dependent <- function(x,y) {,,,,,,,,,darkblue,,,
-f,,,dependent,,,return ( mean(x-y) / (sds(x-y) / sqrt(length(x))) )},,,,,,,,,,,,
-f,,,dependent,,,,,,,Dependent Means for x like population and y like sample,,,,,,,,,
+f,,,save_plot_lm,,,save_plot_lm <- function (flag,matrix,file) {,,,save a plot x y from matrix,,,,,,darkblue,,,
+f,,,save_plot_lm,,,xnames <- colnames ( matrix ) [ 1 ],,,,,,,,,,,,
+f,,,save_plot_lm,,,ynames <- colnames ( matrix ) [ 2 ],,,,,,,,,,,,
+f,,,save_plot_lm,,,xvalues <- matrix [[ 1 ]],,,,,,,,,,,,
+f,,,save_plot_lm,,,yvalues <- matrix [[ 2 ]],,,,,,,,,,,,
+f,,,save_plot_lm,,,ggplot ( matrix , aes ( xvalues , yvalues ) ) +,,,,,,,,,,,,
+f,,,save_plot_lm,,,geom_point () + theme_light () +,,,,,,,,,,,,
+f,,,save_plot_lm,,,labs ( x = xnames , y = ynames , title = flag ) +,,,,,,,,,,,,
+f,,,save_plot_lm,,,stat_smooth ( method = 'lm' , se = FALSE ),,,,,,,,,,,,
+f,,,save_plot_lm,,,ggsave ( file , plot = last_plot () ) },,,,,,,,,,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
 #,,,#,,,#,,,|GET-FUNCTION|,,,#,,,#,,,#
 #,,,#,,,#,,,#,,,#,,,#,,,#
@@ -253,4 +265,3 @@ t,,,spread,,,,,,like inverse of gather, spread makes columns for each group by i
 #,,,#,,,#,,,|DATA-SCIENCE|,,,#,,,#,,,#
 #,,,#,,,#,,,#,,,#,,,#,,,#
 s,,,describe,,,describe ( matrix° ),,,describe matrix for data science experiments,,,,,,darkblue,,,
-s,,,ttest,,,t.test ( B° , A° , paired=TF° , alternative='°' ),,,conduce a ttest for dependence,,,,,,darkblue,,,
