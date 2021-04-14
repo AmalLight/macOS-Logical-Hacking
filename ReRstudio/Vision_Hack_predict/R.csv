@@ -81,6 +81,10 @@ f,,,save_plot_lm,,,geom_point () + theme_light () +,,,,,,,,,,,,
 f,,,save_plot_lm,,,labs ( x = xnames , y = ynames , title = flag ) +,,,,,,,,,,,,
 f,,,save_plot_lm,,,stat_smooth ( method = 'lm' , se = FALSE ),,,,,,,,,,,,
 f,,,save_plot_lm,,,ggsave ( file , plot = last_plot () ) },,,,,,,,,,,,
+f,,,sse,,,sse <- function(ytrue,ylm) {return (sum ( ( y2 - y ) ^ 2 ) )},,,total square error,,,,,,darkblue,,,
+f,,,ssr,,,ssr <- function(ytrue,ylm) {return (sum (( y2 - mean(y) )^2) )},,,square regression,,,,,,darkblue,,,
+f,,,sst,,,sst <- function(sse,ssr) {return ( ssr + sse )},,,total sum of square,,,,,,darkblue,,,
+f,,,rsquare,,,rsquare <- function(ssr,sst) {return ( ssr / sst )},,,explain for regression,,,,,,darkblue,,,
 #,,,#,,,#,,,#,,,#,,,#,,,#
 #,,,#,,,#,,,|GET-FUNCTION|,,,#,,,#,,,#
 #,,,#,,,#,,,#,,,#,,,#,,,#

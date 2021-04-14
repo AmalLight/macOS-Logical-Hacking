@@ -29,9 +29,11 @@ paste ( 'covariance  of xy:' , cov <- cov2 ( x , y ) )
 paste ( 'correlation of xy:' , cor <- cor2 ( x , y ) )
 
 x~y
-paste ( 'x~y' ,
-        'like space from x and y' ,
-        'for independent variables' )
+
+paste ( 'y~x' ,
+        'like space from y and x' ,
+        'for independent variables' ,
+        'like y=c+x*v' )
 
 summary ( val_lm <- lm ( y~x ) )
 
