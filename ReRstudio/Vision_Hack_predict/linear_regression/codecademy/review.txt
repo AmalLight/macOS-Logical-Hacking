@@ -1,0 +1,29 @@
+Review
+
+Whew, that’s a wrap! You’ve covered a lot of material related to linear regression and its implementation in R. Here are the main concepts we’ve covered:
+
+    Statistical model building entails four main steps: 1) confirming data assumptions, 2) building a model on training data, 3) assessing model fit, and 4) analyzing model results.
+
+    We can use a combination of qualitative methods, such as box-plots, and quantitative methods, like the correlation coefficient, to assess that data meets our assumptions
+
+    We use the lm() method and Y ~ X notation to build a linear regression model. The Y variable is referred to as the outcome variable of the model, and any X variable is referred to as the predictor variable.
+
+    We can use a similar set of qualitative and quantitative methods to evaluate the fit of our model, including a comparison of the plotted model to a LOESS smoother and statistics like mean squared error (MSE) and R-squared.
+
+    MSE and R-squared statistics are summaries of the overall value of the model residuals. A residual is the difference between the value of a data point predicted by a model and its actual observed value.
+
+    The results of a linear regression model include regression coefficients. These coefficients represent the effect their respective predictor variable has on the model’s outcome variable.
+
+    In a simple linear regression, the regression coefficient represents the effect of a one-unit increase in the predictor variable.
+
+    The intercept coefficient represents the value of the outcome variable given that the predictor variable is equal to zero; this coefficient isn’t always meaningful and depends on the situation being modeled.
+
+    The p-value associated with a regression coefficient helps us understand whether the effect of a variable is statistically significant.
+
+    Multiple linear regression is similar to simple regression, except that it includes multiple predictor variables.
+
+    In a multiple linear regression, the regression coefficient represents the effect of a one-unit increase in the respective predictor variable, given that all other predictor variables are held constant.
+
+    In both simple and multiple linear regression, boolean categorical variables represent the total effect of switching from one category to another.
+
+

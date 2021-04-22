@@ -1,0 +1,41 @@
+cor.test for correlation
+-----------------------------------
+summary for Q1 Q2 whisker box plot
+-----------------------------------
+title: "Assumptions of Linear Regression (Outliers)"
+```
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+conversion <- read.csv('conversion.csv', header= T)
+clicks_bx_plot <- conversion %>%
+  ggplot(aes(clicks,clicks)) +
+  geom_boxplot()
+
+clicks_bx_plot
+
+summary( conversion $ clicks )
+Q1 <- summary( conversion $ clicks ) [[ 2 ]]
+Q3 <- summary( conversion $ clicks ) [[ 5 ]]
+
+Q1 ; Q3
+
+IQR <- Q3-Q1
+x <- conversion $ clicks
+
+upwhisker <- min(max(x), Q3 + 1.5 * IQR)
+lowwhisker <- max(min(x), Q1 - 1.5 * IQR)
+
+threshold <- upwhisker
+threshold
+
+convert_clean <-
+conversion %>%
+    filter( clicks < threshold )
+
+clean_bx_plot <-
+convert_clean %>%
+   ggplot(aes(clicks,clicks)) +
+   geom_boxplot()
+clean_bx_plot
+```

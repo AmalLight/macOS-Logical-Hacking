@@ -1,0 +1,36 @@
+---
+title: "Review"
+output: html_notebook
+---
+```{r message=FALSE, warning=FALSE}
+# set sampling seed
+set.seed(123)
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+conversion <- read.csv('conversion.csv', header= T)
+# sample training data
+sample <- sample(c(TRUE, FALSE), nrow(conversion), replace = T, prob = c(0.6,0.4))
+train <- conversion[sample, ]
+colnames ( train )
+```
+```{r  message=FALSE}
+# build model
+model1 <- lm(total_convert ~ impressions + clicks + gender + interest + age + spent + approved_convert, data = train)
+summary(model1)
+model2 <- lm(total_convert ~ impressions + clicks + gender + interest + age + spent, data = train)
+summary(model2)
+model3 <- lm(total_convert ~ impressions + clicks + gender + interest + age, data = train)
+summary(model3)
+model4 <- lm(total_convert ~ impressions + clicks + gender + interest, data = train)
+summary(model4)
+model5 <- lm(total_convert ~ impressions + clicks + gender, data = train)
+summary(model5)
+model6 <- lm(total_convert ~ clicks + gender, data = train)
+summary(model6)
+model7 <- lm(total_convert ~ clicks, data = train)
+summary(model7)
+
+test <- conversion[ !sample, ]
+#best with all!!
+```

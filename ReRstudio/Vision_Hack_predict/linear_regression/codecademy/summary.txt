@@ -1,0 +1,43 @@
+Linear Regression in R
+Reading Model Results
+
+Ready for the real fun? We’ve done our due diligence and confirmed that our data fulfills the assumptions of simple linear regression models; we’ve split our data into test and training subsets, and properly built a model using y ~ x + b notation; we’ve even taken the time to assess the fit of our model using both quantitative and qualitative approaches. Now we can finally analyze the results of our model and discover the relationship between user advertisement clicks and the purchase rate of related products!
+
+We can view the results of a linear regression model in R by calling summary() on the model variable to which we saved the results of our call to lm(). The summary() function will print out a lot of information about our model–– but don’t be overwhelmed! There are four primary sections of quantitative results that are crucial to interpreting regression models:
+
+Call
+
+This section simple displays the call to lm() which created these model results. It’s a helpful reminder of which version of a outcome-predictor pair is currently under analysis.
+
+Residuals
+
+As covered in our earlier exercises, a residual is the difference between the value of an outcome variable predicted by the model and the actual observed value of the variable. The summary() output displays a set of numbers that summarize the distribution of residuals in our model, including minimum/maximum residual values, the values first/third quantiles, and the median residual value for the model. We’ve already analyzed our residual values by creating a plot in an earlier exercise, but these summary values are a helpful reminder of the overall spread of our model errors.
+
+Coefficients
+
+Estimate
+
+Coefficients are most important results in the interpretation of regression models. The number you see in the Estimate column, (a value of 0.048939 for clicks) is called a regression coefficient. Looking back to formal definition of a linear regression model:
+
+Y=beta0+beta1∗X+errorY = beta_0 + beta_1*X + errorY=beta0​+beta1​∗X+error
+
+The regression coefficient is represented by the beta_1 variable. This linear regression equation tells us that the regression coefficient represents the expected change in the dependent variable (in our case total_convert) for a one-unit increase in the independent variable (clicks). In other words, for every additional click on an advertisement, the expected sales of a related product are estimated to increase by 0.049 dollars. In addition to the size of the coefficient, it is also important to note the sign of the coefficient. If our clicks coefficient was negative, our model would be estimating that the sales of a product actually decreases every time an advertisement is clicked.
+
+Std. Error
+
+The column adjacent to Estimate is called Std. Error; the standard error of each coefficient is the estimate of the standard deviation of the coefficient. It is crucial to note that the standard error is not a quantity of interest by itself, but depends on the value of our regression coefficient
+
+T-value and Pr(>|t|)
+
+The t value and Pr(>|t|) inherently answer the same question–– given the value of our variable’s regression coefficient and its’ standard error, does the variable explain a significant part of the change in our outcome variable? However, the Pr(>|t|) column purposely provides a more concise response to this question, using the asterisk notation that corresponds with the Signif. codes legend at the bottom of the Coefficients results section. In R model output, one asterisk means “p < .05”. Two asterisks mean “p < .01”; and three asterisks mean “p < .001”. These values are referred to as p-values in scientific literature. How can we use p-values to answer our question around model significance?
+
+Asterisks in a regression table indicate the level of the statistical significance of a regression coefficient. Our understanding of statistical significance is based off of the idea of a random sample. When interpreting these asterisk values, we ask ourselves: if there truly is no relationship between clicks on an advertisement and product sales, then what are chances that, across many user clicks on an ad, we see behavior that suggests that there is no relationship?
+
+For our clicks variable, with *** in the Pr(>|t|) column, the answer is very unlikely. The value of ***, or p < .001, means that random sample resulting in the regression coefficient and standard error that we observed for clicks-given that there was truly no difference relationship between clicks and product purchase—would occur in less than one time in a random draw of 100, on average. Given that we would so rarely observe the situation that suggests that there is no relationship between our click and total_convert, we can say that there is a statistically significant relationship between the two variables. Generally speaking, scientists accept that a variable coefficient with p-value less than 0.05 is statistically significant.
+
+Measures of Model Fit
+
+At the bottom of the output of summary() are a series of labeled metrics, like Residual Standard Error (RSE) and Multiple R-squared, which quantify the fit of our model. Our previous exercises have covered how to interpret and plot many of these measures, but it’s a helpful reminder for them to be summarized along with other model output.
+
+Wow! There is so much information conveyed within a simple call to our model results. Continue on to the second half of this lesson to practice the interpretation of model results, and learn more about how to select a best fit model.
+

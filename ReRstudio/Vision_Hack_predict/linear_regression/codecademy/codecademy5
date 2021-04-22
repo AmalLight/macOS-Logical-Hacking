@@ -1,0 +1,44 @@
+---
+title: "Visualizing Model Fit"
+output: html_notebook
+---
+```{r message=FALSE, warning=FALSE}
+# set sampling seed
+set.seed(123)
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+conversion_clean <- read.csv('conversion_clean.csv', header= T)
+# sample training data
+sample <- sample(c(TRUE, FALSE), nrow(conversion_clean), replace = T, prob = c(0.6,0.4))
+train <- conversion_clean[sample, ]
+```
+```{r build_viz}
+# build plot of clicks on total_convert below
+plot <- train %>% 
+  ggplot( aes ( clicks, total_convert) ) +
+  geom_point () +
+  geom_smooth( method = 'lm' ) +
+  geom_smooth( se = FALSE , color = "red" )
+plot
+# a for top case divergence
+# b for etxreme points divergence
+# c clicks and total_conversion is perfectly linear
+# no linear relation made by c
+linear_relationship <- 'a'
+```
+```{r build_model2}
+# build plot of impressions on total_convert below
+plot_2 <- train %>%
+  ggplot( aes( impressions, total_convert ) ) +
+  geom_point() +
+  geom_smooth( method = 'lm' ) +
+  geom_smooth( se = FALSE , color = "red" )
+plot_2
+
+# a perfectly linear
+# b clear divergence from 0 and around 500k
+# c less linear around 500k
+# no linear relation
+linear_relationship_2 <- 'c'
+```

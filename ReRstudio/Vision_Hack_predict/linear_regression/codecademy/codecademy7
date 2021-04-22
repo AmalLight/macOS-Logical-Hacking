@@ -1,0 +1,52 @@
+---
+title: "Making Predictions"
+output: html_notebook
+---
+```{r message=FALSE, warning=FALSE}
+# set sampling seed
+set.seed(123)
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+library(modelr)
+conversion_clean <- read.csv('conversion_clean.csv', header= T)
+# sample training data
+sample <- sample(c(TRUE, FALSE), nrow(conversion_clean), replace = T, prob = c(0.6,0.4))
+train <- conversion_clean[sample, ]
+test <- conversion_clean[!sample, ]
+```
+add_predictions(model) --> add column with function predict (model)
+MSE = sum(Y1-Y2)^2 / n
+```{r message=FALSE}
+mse <- function(y1,y2) {return( sum( (y1-y2)^2 ) / length(y1) )}
+model <- lm(total_convert ~ clicks, data = train)
+str(train)
+#------------------------------------------------------------
+mse( test $ total_convert ,
+     test $ clicks *
+         model $ coefficients[ 2 ] +
+         model $ coefficients[ 1 ] )
+#------------------------------------------------------------
+mse_clicks <- test %>% 
+  add_predictions(model) %>%
+  summarise(MSE = mean((total_convert - pred)^2))
+mse_clicks
+#------------------------------------------------------------
+model2 <- lm(total_convert ~ impressions, data = train)
+mse( test $ total_convert ,
+     test $ impressions *
+         model2 $ coefficients[ 2 ] +
+         model2 $ coefficients[ 1 ] )
+#------------------------------------------------------------
+mse_impressions <- test %>%
+  add_predictions(model2) %>%
+  summarise(MSE = mean((total_convert - pred)^2))
+mse_impressions
+#------------------------------------------------------------
+plot <- test %>% 
+  add_predictions(model2) %>%
+  ggplot( aes( x=impressions , y=total_convert ) ) +
+  geom_point() +
+  geom_point( aes( y=pred ) , color='blue' )
+plot
+```

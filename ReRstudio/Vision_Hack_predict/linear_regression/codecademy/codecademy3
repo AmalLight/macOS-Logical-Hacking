@@ -1,0 +1,40 @@
+---
+title: "Quantifying Model Fit"
+output: html_notebook
+---
+```{r message=FALSE, warning=FALSE}
+# set sampling seed
+set.seed(123)
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+conversion_clean <- read.csv('conversion_clean.csv', header= T)
+# sample training data
+sample <- sample(c(TRUE, FALSE), nrow(conversion_clean), replace = T, prob = c(0.6,0.4))
+train <- conversion_clean[sample, ]
+train
+model <- lm ( total_convert ~ clicks, data = train )
+# compute avg_rse
+summary ( model )
+str ( model )
+# RMSE is like sd on population ?
+y <- model $ model $ total_convert
+x <- model $ model $ clicks
+c <- model $ coefficients [ 1 ]
+v <- model $ coefficients [ 2 ]
+y2 <- c + ( x * v )
+# str ( model )
+df <- 2 # ..ok
+leny <- length ( y2 ) # ..ok
+RSE <- sqrt ( sum ( ( y - y2 ) ^2 ) / ( leny - df ) )
+RSE
+avg_rse <- RSE / mean(train$total_convert)
+avg_rse
+model_2 <- lm ( total_convert~impressions , data=train )
+r_sq <- summary ( model ) $ r.squared
+r_sq_2 <- summary ( model_2 ) $ r.squared
+
+sprintf("The percentage error of the model is %s . Any prediction drawn from this model could be %s percent off from the actual observed value.", avg_rse, avg_rse)
+
+sprintf("Based on a pair of simple linear regression models, we have determined that %s percent of the variation in user purchase behavior can be explained by the number of times a user viewed on a relevant ad campaign; whereas only %s percent of this variation can be explained by the number of times a user clicked on a relevant ad.", r_sq_2, r_sq)
+```

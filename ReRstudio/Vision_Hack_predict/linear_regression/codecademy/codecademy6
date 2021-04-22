@@ -1,0 +1,36 @@
+---
+title: "Assessing Simple Linear Regression"
+output: html_notebook
+---
+```{r message=FALSE, warning=FALSE}
+# set sampling seed
+set.seed(123)
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+conversion_clean <- read.csv('conversion_clean.csv', header= T)
+# sample training data
+sample <- sample(c(TRUE, FALSE), nrow(conversion_clean), replace = T, prob = c(0.6,0.4))
+train <- conversion_clean[sample, ]
+```
+```{r message=FALSE}
+model <- lm(total_convert ~ clicks, data = train)
+model2 <- lm(total_convert ~ impressions, data = train)
+summary ( model  )
+summary ( model2 )
+clicks_coefficient <- model $ coefficients[ 2 ]
+```
+```{r}
+ggplot ( data=train , aes( clicks , total_convert )) +
+geom_point() +
+geom_smooth( method = 'lm' )
+```
+A: close to 0 intercept_coefficient make result around to 0
+B: The intercept coefficient is negative
+C: The intercept coefficient make that we will expect result from 0.90 and 1.25
+D: close to 0 intercept_coefficient make result around to 0
+```{r}
+intercept_coefficient <- 'c'
+# uncomment f-string below
+#sprintf("Based on a simple regression of `total_convert` by `clicks`, we estimate that for every additional click, the number of product purchases increases by %s.", clicks_coefficient)
+```

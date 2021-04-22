@@ -1,0 +1,30 @@
+---
+title: "Building a Simple Linear Model"
+output: html_notebook
+---
+```{r message=FALSE, warning=FALSE}
+# set sampling seed
+set.seed(123)
+# load libraries and data
+library(dplyr)
+library(ggplot2)
+conversion_clean <- read.csv('conversion_clean.csv', header= T)
+```
+Y=beta0​+beta1​∗X+error
+Error: represents the random variation in the relationship between the two variables
+```{r split_train_test}
+# specify 60/40 split
+str( conversion_clean )
+data_sample <- sample ( c(TRUE, FALSE),
+                        size=nrow(conversion_clean) ,
+                        replace=T ,
+                        prob=c(0.6,0.4) )
+#tot_row <- nrow(conversion_clean)
+#row_numb_train <- tot_row * 0.60
+#row_numb_test <- tot_row - row_numb_train
+data_sample
+train <- conversion_clean [ data_sample , ]
+test <- conversion_clean [ !data_sample , ]
+model <- lm(total_convert~clicks, data = train)
+model
+# subset data points into train and test sets
