@@ -1,0 +1,45 @@
+in probanility (*) < (+)
+in probability (/) > (+)
+
+p(a,b,c) = p(a) + p(b) + p(c) sse or
+p(a,b,c) = p(a) * p(b) * p(c) sse and
+
+and = intersection
+ or = union
+
+slide 2.2
+    p(x) = 1 - p(y) | y = -x
+    p(A->B) -> ( p(A) < p(B) ) from Venm' diagram
+    p(a or b) = p(a) + p(b) - p( aIb ) | I is Intersect
+                              p( aIb ) if there'is a part with A and B
+
+slide 2.3
+    set discreto= con elementi che sono punti isolati,
+                  con un intorno minimo completo,
+                  isolato da altri elementi del set.
+
+    set continuo= funzione continua, espremibile con una funzione matematica,
+                                     che non ha buchi o limiti
+
+    probability of Bernoulli, moneta testa o croce:
+        X->p(X) == X|Y->1/2 == 50% == 0.50
+        X=theta --> Y=1-theta == theta=1 e (1-theta)=0=beta
+        theta o beta=[0]^x*(1-[0])^x
+
+slide 2.4
+    l'area misura la probabilità
+
+    pbeta from rectangle triangle
+        for exemple to find < 75% , we have to get the area: area=b*h/2
+        p(b*h/2) = 1*75% * 2*75% / 2 == 75%^2 sse base=1 e altezza=2
+
+    cdf = cumulative distribution function
+        from a set X , pick a random number X, describe the probabilty to get number <= x.
+        F(x) = P(X<=x) , resolve using pbeta where X is 75% == pbeta ( 75, 2, 1 )
+
+   survival function
+        S(x) = P(X>x) == 1 - F(x) == 1 - cdf.
+
+reverse is possible ?
+   from pbeta to x of cdf. == from pbeta to x and y of axes
+

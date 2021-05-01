@@ -1,0 +1,86 @@
+
+# library ( swirl   )
+# install_from_swirl ( "Statistical Inference" ) ; swirl ()
+
+Another term for expected value is mean. average| Consider the random variable X representing a roll of a fair dice. By 'fair'
+| we mean all the sides are equally likely to appear. What is the expected
+| value of X?
+> 3.5
+
+expect_dice
+function(pmf){ mu <- 0; for (i in 1:6) mu <- mu + i*pmf[i]; mu}
+
+dice_high and dice_low.
+    dice_high [ 0.04761905 0.09523810 0.14285714 0.19047619 0.23809524 0.28571429 ]
+    dice_low  [ 0.28571429 0.23809524 0.19047619 0.14285714 0.09523810 0.04761905 ]
+
+expect_dice ( dice_high ) 4.333333
+expect_dice ( dice_low )  2.666667
+
+edh and edl == 4.333333 and 2.666667
+
+| Knowing that the expected value is the area under the triangle, t*f(t), what
+| is the expected value of the random variable with this PDF?
+1: .5
+2: 1.0
+3: .25
+4: 2.0
+1
+
+| To find the expected value of this random variable you need to integrate the
+| function t*f(t). Here f(t)=t/2, the diagonal line. (You might recall this
+| from the last probability lesson.) The function you're integrating over is
+| therefore t^2/2. We've defined a function myfunc for you representing this.
+| You can use the R function 'integrate' with parameters myfunc, 0 (the lower
+| bound), and 2 (the upper bound) to find the expected value. Do this now.
+> integrate ( myfunc , 0 , 2 )
+1.333333 with absolute error < 1.5e-14
+
+| Each of these 10 samples will have a mean, right? We can use the R function
+| apply to calculate the mean of each row of the matrix allsam. We simply call
+| apply with the arguments allsam, 1, and mean. The second argument, 1, tells
+| 'apply' to apply the third argument 'mean' to the rows of the matrix. Try
+| this now.
+> apply( allsam , 1, mean )
+ [1]  2.5  4.0  5.5  7.0  5.5  7.0  8.5  8.5 10.0 11.5 -> smeans
+# this means by samples ,
+# population is 1 x 5
+# samples is 1 x 2
+
+| Expected values are properties of what?
+1: variances
+2: demanding parents
+3: distributions
+4: fulcrums
+3
+
+| A population mean is a center of mass of what?
+1: a distribution
+2: a population
+3: a family
+4: a sample
+2
+
+| A sample mean is a center of mass of what?
+1: observed data
+2: a population
+3: a distribution
+4: a family
+1
+
+| True or False? A population mean estimates a sample mean.
+1: False
+2: True
+1
+
+| True or False? The more data that goes into the sample mean, the more
+| concentrated its density / mass function is around the population mean.
+1: False
+2: True
+pdf/cdr
+
+| True or False? The more data that goes into the sample mean, the more
+| concentrated its density / mass function is around the population mean.
+1: False
+2: True
+2

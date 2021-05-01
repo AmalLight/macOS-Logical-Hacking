@@ -1,0 +1,142 @@
+
+# library ( swirl   )
+# install_from_swirl ( "Statistical Inference" ) ; swirl ()
+
+| If you were given a fair die and asked what the probability of rolling a 3
+| is, what would you reply?
+1: 1/3
+2: 1/6
+3: 1
+4: 1/4
+5: 1/2
+2
+
+| Suppose the person who gave you the dice rolled it behind your back and told
+| you the roll was odd. Now what is the probability that the roll was a 3?
+1: 1/6
+2: 1/3
+3: 1/4
+4: 1/2
+5: 1
+2 <- odd = dispari
+
+| Back to our dice example. Which of the following expressions represents
+| P(A&B), where A is the event of rolling a 3 and B is the event of the roll
+| being odd?
+1: 1/4
+2: 1/2
+3: 1
+4: 1/3
+5: 1/6
+5
+conditional..
+3/6 * 1/3 = 1/6
+
+| Continuing with the same dice example. Which of the following expressions
+| represents P(A&B)/P(B), where A is the event of rolling a 3 and B is the
+| event of the roll being odd?
+1: (1/2)/(1/6)
+2: 1/6
+3: (1/3)/(1/2)
+4: (1/6)/(1/2)
+4
+P(A&B)/P(B)==B->A
+B=1/3
+
+| Let 'D' be the event that the patient has HIV, and let '+' indicate a
+| positive test result and '-' a negative. What information do we know? Recall
+| that we know the accuracy rates of the HIV test.
+1: P(+|D) and P(-|~D)
+2: P(+|~D) and P(-|~D)
+3: P(+|D) and P(-|D)
+4: P(+|~D) and P(-|D)
+1
+
+| Suppose a person gets a positive test result and comes from a population with
+| a HIV prevalence rate of .001. We'd like to know the probability that he
+| really has HIV. Which of the following represents this?
+1: P(~D|+)
+2: P(+|D)
+3: P(D|-)
+4: P(D|+)
+positivo se viene riscontrata l'infezione da Hiv.
+L'esito è negativo se non viene riscontrata l'infezione da Hiv.
+P( +|D )
+P( D|+ ) # possibilità di avere l'hiv dopo un test positivo
+
+| Disease prevalence is .001. Test sensitivity (+ result with disease) is 99.7%
+| and specificity (- result without disease) is 98.5%. First compute the
+| numerator, P(+|D)*P(D). (This is also part of the denominator.)
+P(~D)=0.999
+ P(D)=0.001
+P(+|D)=0.997
+P(-|~D)=0.985
+P(+|~D)=1-0.985 = 0.015
+P(D|+)= ( 0.997 * 0.001 ) / ( 0.997 * 0.001 + 0.015 * 0.999 )
+
+| The diagnostic likelihood ratio of a positive test, DLR_+, is the ratio of
+| the two + conditional probabilities, one given the presence of disease and
+| the other given the absence. Specifically, DLR_+ = P(+|D) / P(+|~D).
+| Similarly, the DLR_- is defined as a ratio. Which of the following do you
+| think represents the DLR_-?
+1: P(-|D) / P(+|~D)
+2: P(-|D) / P(-|~D)
+3: P(+|~D) / P(-|D)
+4: I haven't a clue.
+DLR_+ = P(+|D) / P(+|~D)
+2
+
+| Since the numerator is close to 1 and the denominator is close to 0 do you
+| expect DLR_+ to be large or small?
+1: Small
+2: I haven't a clue.
+3: Large
+3
+
+| Now recall that DLR_- = P(-|D) / P(-|~D). Here the numerator is the
+| complement of sensitivity and the denominator is specificity. From the
+| arithmetic and what you know about accuracy tests, do you expect DLR_- to be
+| large or small?
+1: Large
+2: I haven't a clue.
+3: Small
+3
+
+| The left side of the equation represents the post-test odds of disease given
+| a positive test result. The equation says that the post-test odds of disease
+| equals the pre-test odds of disease (that is, P(D)/P(~D) ) times
+1: I haven't a clue.
+2: the DLR_+
+3: the DLR_-
+P(D|+) / P(~D|+)
+2
+
+| The equation P(D|-) / P(~D|-) = P(-|D) / P(-|~D) * P(D)/P(~D) says what about
+| the post-test odds of disease relative to the pre-test odds of disease given
+| negative test results?
+1: post-test odds are less than pre-test odds
+2: post-test odds are greater than pre-test odds
+3: I haven't a clue.
+1
+
+| We've seen examples of independence in our previous probability lessons.
+| Let's review a little. What's the probability of rolling a '6' twice in a row
+| using a fair die?
+1: 1/6
+2: 1/2
+3: 1/36
+4: 2/6
+3
+
+| You're given a fair die and asked to roll it twice. What's the probability
+| that the second roll of the die matches the first?
+1: 1/6
+2: 2/6
+3: 1/2
+4: 1/36
+1
+
+| If the chance of developing a disease with a genetic or environmental
+| component is p, is the chance of both you and your sibling developing that
+| disease p*p?
+no

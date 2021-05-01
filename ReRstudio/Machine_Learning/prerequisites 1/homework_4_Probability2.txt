@@ -1,0 +1,43 @@
+
+# library ( swirl   )
+# install_from_swirl ( "Statistical Inference" ) ; swirl ()
+
+| If you had a ruler of infinite precision, would measuring the height of
+| adults around the world be continuous or discrete?
+1: continuous
+2: discrete
+1
+
+| Is the drawing of a hand of cards continuous or discrete?
+1: continuous
+2: discrete
+2
+
+| The probability p is associated with a 'heads' outcome which occurs when x=0.
+| Which of the two expressions has an exponent of 1 for p when x is 0?
+1: (p^(1-x))*(1-p)^x
+2: (p^x)*(1-p)^(1-x)
+2
+
+| That's not the answer I was looking for, but try again.
+| Is the line nonnegative? Is the area under the diagonal 1?
+1: No
+2: Yes
+2
+
+se pdf y = x/2
+   cdf % = int( 1/2 * x ) = 1/2 * int( x ) = 1/2 * x^2/2 = x^2/4
+
+| What is the 50th percentile of the CDF F(x)=(x^2)/4 from the example above?
+
+cdf x = 0.5 # con una proporzione sulla base ? devo avere il 50%
+x^2/4 = 0.5
+  x^2 = 0.5*4
+    x = sqrt( 2 )
+    x = 1.41
+
+cdf 0.5 = 0.06 # con una proporzione del 50% sulla base, quanta probabilità ho ? %
+
+1.41 ? è il 70.5 di 2
+cdf per 0.705 = 0.124
+

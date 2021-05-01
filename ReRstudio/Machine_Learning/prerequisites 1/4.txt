@@ -1,0 +1,60 @@
+in probability (/) > (+) > (*)
+
+and = intersection = *
+ or = union        = +
+
+and:
+    ( conditional ): P(A and B) = P(A | B) * P(B)
+    ( independent ): P(A and B) = P(A)     * P(B)
+    (   general   ): P(A and B) = P(B and A)
+
+implicazione:
+
+    build from and:
+
+          P(A | B)
+        = P(A & B) / P(B)
+       .. se P(A') allora P(B) , B -> A
+
+    bayes:
+
+        P(B | A) = P(A | B) *  P(B) / P(A)
+                 = P(A & B) /  P(B) * P(B) / P(A)
+                 = P(A & B) /  P(A)
+
+    unit:
+
+        P(A) = P(A | B) * P(B) +   P(A | -B) *  P(-B)
+             = P(A | B) * P(B) + 1-P(A |  B) * 1-P(B)
+             = P(A & B) + P(A & -B)
+
+        P(B) = P(A & B) / P(A | B)
+
+    not:
+        1-P(A) = P(-A)
+        1-P(A | B) = P(A | -B)
+or:
+    ( condiviso   ): P(A or B) = P(A) + P(B) - P(A & B)
+    ( independent ): P(A or B) = P(A) + P(B)
+
+l'area misura la probabilità cdf
+    survival function = S(x) = 1 - cdf(x) | cdf(x) = P( X<=x )
+    basato sull'area , esempio rettangolo base*x * altezza*x / 2
+
+Expected
+    E(X) is the area under the function t * PDF
+    function(array){ mu <- 0; for (i in range) mu <- mu + i*array[i]; mu}
+    E(cX) = c * E(X)
+    E(X + Y) = E(X) + E(Y)
+    E(a * X + b * Y) = a * E(X) + b * E(Y)
+
+slide 4.2
+    Valore atteso = E[X] = summary ( X + p(X) )
+
+    media della popolazione != media del grafico se grafico non normalizzato
+                            => vedere skewness symmetrical
+    media della popolazione == media symmetrical skewness
+
+slide 4.3
+    Valore atteso == predicted value ? no it is a mean .
+

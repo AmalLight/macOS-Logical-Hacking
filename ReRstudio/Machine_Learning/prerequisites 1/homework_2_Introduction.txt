@@ -1,0 +1,34 @@
+
+# library ( swirl   )
+# install_from_swirl ( "Statistical Inference" ) ; swirl ()
+
+Which of the following is NOT an example of statistical inference?
+    1: Constructing a medical image from fMRI data
+    2: Polling before an election to predict its outcome
+    3: Testing the efficacy of a new drug
+    4: Recording the results of a statistics exam
+    4
+
+
+Which of the following would NOT be a source of bad data?
+    1: Small sample size
+    2: A poorly designed study
+    3: A randomly selected sample of population
+    4: Selection bias
+    3
+
+So with statistical inference we use data to draw general conclusions about a
+population. Which of the following would a scientist using statistical
+inference techniques consider a problem?
+    1: Our study has no bias and is well-designed
+    2: Our data sample is representative of the population
+    3: Contaminated data
+    2
+
+Which of the following is NOT an example of statistical inference in action?
+    1: Testing the effectiveness of a medical treatment
+    2: Determining a causative mechanism underlying a disease
+    3: Estimating the proportion of people who will vote for a candidate
+    4: Counting sheep
+    4
+

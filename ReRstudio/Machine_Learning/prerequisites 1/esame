@@ -1,0 +1,55 @@
+
+malattia genitori = 0.17
+malattia padre = 0.12
+malattia madre = 0.6
+
+0.12 * x = 0.6
+x = 0.20
+
+0.17 = p + m - 6%
+0.17 = 0.12 + x - 0.06
+x = 0.11
+-------------------
+
+x = [0,1] ---> rettangolo..
+y = 1
+
+.75
+
+---------------------
+
+head = X$ me -> her
+tail = Y$ me <- her
+
+p for heads
+
+0 sse 1-p = Y
+
+2 / 0.02
+
+P               P      Y
+-- = 0.05 --> ----- = --- .
+1-P            1-P     B
+
+---------------------
+
+1 2 3 4
+
+pmf on distribution : += index * value[ index ]
+
+---------------------
+
+positive test and that 30% of women taking pregnancy tests are actually pregnant => G = 0.30
+lower sensitivity 75% ~ 52% => 
+      75% = +|G
+      52% = +|Gl
+probability of pregnancy given the positive test? => (G | +) = ?
+
+G|+ = (+|G) * (G) / (+)
+    = 0.75  * 0.30 / x
+
+where x = (+|G) * (G) + (+|-G) * (-G)
+        = 0.75  * 0.30 + 0.48 * 0.70
+        = 0.56
+
+G|+ = 0.75  * 0.30 / 0.56 = 0.40

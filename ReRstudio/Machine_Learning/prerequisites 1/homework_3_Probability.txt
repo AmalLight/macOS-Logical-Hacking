@@ -1,0 +1,148 @@
+
+# library ( swirl   )
+# install_from_swirl ( "Statistical Inference" ) ; swirl ()
+
+| The first step in understanding probability is to see if you understand what
+| outcomes of an experiment are possible. For instance, if you were rolling a
+| single, fair die once, how many outcomes are possible?
+1: 6
+2: Too many
+3: 4
+4: 1
+1
+
+| The probability of a particular outcome of an experiment is the ratio of the
+| number of ways that outcome can occur to all possible outcomes of the
+| experiment. Since there are 6 possible outcomes to the experiment of rolling
+| a die, and we assume the die is fair, each outcome is equally likely. So what
+| is the probability of rolling a 2?
+1: 0
+2: 1/6
+3: 1/3
+4: 2/6
+2
+
+
+| What is the probability of rolling an even number?
+1: 1/3
+2: 1/2
+3: 0
+4: 1
+2
+
+| Suppose you rolled the fair die twice in succession. What is the probability
+| of rolling two 4's?
+1: 1/6
+2: 1/36
+3: 2/6
+4: 0
+2
+
+| Suppose you rolled the fair die twice. What is the probability of rolling the
+| same number two times in a row?
+1: 1/6
+2: 2/6
+3: 1/36
+4: 0
+3
+
+| Since we don't care what the outcome of the first roll is, its probability is
+| 1. The second roll of the dice has to match the outcome of the first, so that
+| has a probability of 1/6. The probability of both events occurring is 1 *
+| 1/6.
+1: 1/36
+2: 0
+3: 1/6
+4: 2/6
+3
+
+| Now consider the experiment of rolling 2 dice, one red and one green. Assume
+| the dice are fair and not loaded. How many distinct outcomes are possible?
+| Each of the dice has 6 ways to land, and their outcomes are independent of
+| each other. Each way the red die lands can be paired with each way the green
+| die lands. For instance, a "1" on the red dice can occur independently of any
+| of the 6 outcomes of the green dice.
+1: 11
+2: 1
+3: 36
+4: 12
+3
+
+OR (mutually exclusive)
+| Rolling these two dice, what's the probability of rolling a 10?
+1: 3/36
+2: 1/6
+3: 2/36
+4: 0
+1 [ 4,6 . 6,4 . 5,5 ] = AND( 1/6 , 1/6 ) + AND( 1/6 , 1/6 ) + AND( 1/6 , 1/6 ) = AND( 1/6 , 1/6 ) * 3 = 3/36
+
+| What sum is the most likely when rolling these two dice?
+1: 7
+2: 2
+3: 1
+4: 12
+5: 9
+1
+ 1->0
+ 2->0
+ 6+6=12->1
+ 7=[1,6 . 3,4 . 5,2]
+ 9=[5,4 . 6.3 ]
+
+| Back to rolling two dice. Which expression represents the probability of
+| rolling an even number or a number greater than 8?
+1: (18+10-4)/36
+2: (18+4-2)/36
+3: (18+10)/36
+4: (18+10-2)/36
+1
+  10
+  12
+  1,1 o 1,3 o 1,5
+  2,2 o 2,4 o 2,6
+  3,1 o 3,3 o 3,5
+  4,2 o 4,4 o 4,6
+  5,1 o 5,3 o 5,5
+  6,2 o 6,4 o 6,6 = 18/36
+
+  3,6 o 4,5 o 4,6
+  5,4 o 5,5 o 5,6
+  6,3 o 6,4 o 6,5
+  6,6 = 10/36
+
+| Which of the following expressions represents the probability of rolling a
+| number greater than 10?
+1: (1+1)/36
+2: (3+1-1)/36
+3: (2+1)/36
+4: (3+1)/36
+3
+  11->6,5 o 5,6 o 6,6
+
+| Use the answer to the previous question and the fact that the sum of all
+| outcomes must sum to 1 to determine the probability of rolling a number less
+| than or equal to 10.
+  10->5,5+4,6+6,4=3/36
+  2->1,1
+  3->1,2 e 2,1
+  4->2,2 e 3,1 e 1,3
+  5->1,4 e 4,1 e 2,3 e 3,1
+  6->1,5 e 5,1 e 2,4 e 4,2 e 3,3
+  7->1,6 e 6,1 e 2,5 e 5,2 e 3,4 e 4,3
+  8->2,6 e 6,2 e 3,5 e 5,3 e 4,4
+  9->3,6 e 6,3 e 4,5 e 5,4
+  15+6+5+4=30/36
+
+| Suppose you draw a face card and don't replace it in the deck. What is the
+| probability that when you draw a second card it also will be a face card?
+1: 11/52
+2: 0
+3: 12/51
+4: 11/51
+4
+
+| Suppose you draw a face card and don't replace it in the deck. What is the
+| probability that when you draw a second card it also will be a face card of
+| the same suit?
+2/51
+

@@ -1,0 +1,23 @@
+in probability (/) > (+) > (*)
+
+and = intersection = *
+ or = union        = +
+
+slide 3.2
+    Conditional Probability
+        p(A or B) = p(A) + p(B) - p( AIB )
+        p(A  | B) = 
+        p(B -> A) = p( AIB ) / p(B) where A is current and is old
+                  = p(A) * p(B) / p(B) = p(A)
+
+slide 3.3
+        bayes say
+            P(A | B) = P(B | A) * P(A) / P(B)
+        
+        esempio dei dadi:
+            1/6 per il numero 1
+            1/3 per il numero 2 sse il numero 1
+
+slide 3.4
+    Independent event
+        p(A and B) = p(A) * p(B)
