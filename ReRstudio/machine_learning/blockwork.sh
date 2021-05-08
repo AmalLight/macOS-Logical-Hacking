@@ -53,15 +53,16 @@ fi
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'3'}") title='hacking'
+out=$(wmctrl -l | grep "${space/'x'/'3'}")
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 3 ; sleep 2
 
-              nohup xfce4-terminal       --title=my     --working-directory=$home             &
-    sleep 2 ; nohup xfce4-terminal --tab --title=R      --working-directory=$home --command R &
-    sleep 2 ; nohup xfce4-terminal --tab --title=$title --working-directory=$work             &
+              nohup xfce4-terminal --maximize --title=my   --working-directory=$home             &
+    sleep 2 ; nohup xfce4-terminal --tab      --title=R    --working-directory=$home --command R &
+    sleep 2 ; nohup xfce4-terminal --tab      --title=Git  --working-directory=$home/Git         &
+    sleep 2 ; nohup xfce4-terminal --tab      --title=work --working-directory=$work             &
     sleep 2
 fi
 
