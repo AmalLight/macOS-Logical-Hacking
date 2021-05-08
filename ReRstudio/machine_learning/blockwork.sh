@@ -1,10 +1,10 @@
 #!/bin/bash
 
-sleep 5
+sleep 6
 
 home=/home/kaumi
 work=$home/machine_learning/cookbooks/second_choice
-space='  x kaumi ' ; browser='Mozilla Firefox' ; manager='kaumi - File Manager'
+space='  x kaumi ' ; manager='kaumi - File Manager'
 
 out=$(wmctrl -l | grep "${space/'x'/'0'}" | grep "$manager" )
 
@@ -22,15 +22,15 @@ out=$(wmctrl -l | grep "${space/'x'/'1'}") ; title='R.csv (~/Desktop/Rcsv) - ged
 
 if (( ${#out} == 0 )) ; then
 
-    wmctrl -s 1 ; sleep 2
-    
-    nohup gedit --new-window $home/Desktop/Rcsv/R.csv &
+    wmctrl -s 1 ; sleep 2 ; nohup gedit --new-window $home/Desktop/Rcsv/R.csv &
     
     sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
-    
-    sleep 2 ; nohup gedit --new-document $work/install.sh                        &
-    sleep 2 ; nohup gedit --new-document $home/my_software/collects/blockwork.sh &
     sleep 2
+    
+    nohup gedit --new-document $work/install.sh                        &
+    nohup gedit --new-document $home/my_software/collects/blockwork.sh &
+    
+    sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ if (( ${#out} == 0 )) ; then
     sleep 2 ; nohup firefox --new-tab    duckduckgo.com             &
     sleep 2 ; nohup firefox --new-tab    yandex.com                 &
     sleep 2 ; nohup firefox --new-tab  https://github.com/AmalLight &
-    sleep 2
+    sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
@@ -59,29 +59,29 @@ if (( ${#out} == 0 )) ; then
 
     wmctrl -s 3 ; sleep 2
 
-              nohup xfce4-terminal --maximize --title=my   --working-directory=$home             &
-    sleep 2 ; nohup xfce4-terminal --tab      --title=R    --working-directory=$home --command R &
-    sleep 2 ; nohup xfce4-terminal --tab      --title=Git  --working-directory=$home/Git         &
-    sleep 2 ; nohup xfce4-terminal --tab      --title=work --working-directory=$work             &
+    nohup xfce4-terminal --maximize --title=my   --working-directory=$home &
+    sleep 2
+    
+    nohup xfce4-terminal --tab --title=R    --working-directory=$home --command R &
+    nohup xfce4-terminal --tab --title=Git  --working-directory=$home/Git         &
+    nohup xfce4-terminal --tab --title=work --working-directory=$work             &
     sleep 2
 fi
 
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'4'}")
+out=$(wmctrl -l | grep "${space/'x'/'4'}") ; title='Atril Document Viewer'
 
 if (( ${#out} == 0 )) ; then
 
-    wmctrl -s 4 ; sleep 2
+    wmctrl -s 4 ; sleep 2 ; nohup atril &
+
+    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz ; sleep 2
     
     nohup atril $work/first/Rplots.pdf            &
     nohup atril $work/Machine_Learning_R_2015.pdf &
-    sleep 2
-
-    wmctrl -r $title1 -b add,maximized_vert ; wmctrl -r $title1 -b add,maximized_horz
-    wmctrl -r $title2 -b add,maximized_vert ; wmctrl -r $title2 -b add,maximized_horz
-    sleep 2
+    sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
@@ -103,6 +103,32 @@ out=$(wmctrl -l | grep "${space/'x'/'6'}")
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 6 ; sleep 2 ; nohup firefox --new-window https://www.simosnap.org/chat &
+    sleep 2
+fi
+
+# --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
+
+out=$(wmctrl -l | grep "${space/'x'/'7'}") ; title='VLC media player'
+
+if (( ${#out} == 0 )) ; then
+
+    wmctrl -s 7 ; sleep 2 ; nohup vlc &
+    
+    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
+    sleep 2
+fi
+
+# --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
+
+out=$(wmctrl -l | grep "${space/'x'/'8'}") ; title='Diagram1.dia (/home/kaumi) - dia'
+
+if (( ${#out} == 0 )) ; then
+
+    wmctrl -s 8 ; sleep 2 ; nohup dia &
+    
+    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
     sleep 2
 fi
 
