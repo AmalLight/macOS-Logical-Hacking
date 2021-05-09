@@ -110,7 +110,8 @@ sniffing_and_wait( ) {
 
     while ( true ) ;
     do
-        out=`sudo timeout 3 tcpdump -n | grep 443`
+        out=`sudo timeout 3 tcpdump -n | grep '443 > '`
+        # i can't send with 433 , so i can only recive from other by 443 , so i am downloading
         
         if (( ${#out} == 0 )) ;
         then
