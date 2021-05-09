@@ -107,8 +107,9 @@ out=$(wmctrl -l | grep "${space/'x'/'6'}")
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 6 ; sleep 2 ; nohup firefox --new-window https://www.simosnap.org/chat &
-    sleep 3 ; nohup firefox --new-tab https://webchat.freenode.net/ &
-    sleep 3
+    sleep 4 ; nohup firefox --new-tab https://webchat.freenode.net/ &
+    sleep 4 ; nohup firefox --new-tab https://webchat.azzurra.org/  &
+    sleep 4
 fi
 
 # --------------------------------------------------------------------------------------
