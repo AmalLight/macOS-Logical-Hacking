@@ -13,6 +13,10 @@ if (( ${#out} == 0 )) ; then
     wmctrl -s 0 ; sleep 2 ; thunar $home ; sleep 2
     
     wmctrl -r $manager -b add,maximized_vert ; wmctrl -r $manager -b add,maximized_horz ; sleep 2
+    
+    thunar $work ; thunar $home/Git ; thunar $home/my_software/collects ;
+    
+    thunar $home/Desktop/Rcsv ; sleep 2
 fi
 
 # --------------------------------------------------------------------------------------
@@ -43,10 +47,10 @@ if (( ${#out} == 0 )) ; then
     wmctrl -s 2
     
     sleep 2 ; nohup firefox --new-window http://192.168.43.42:8888/ &
-    sleep 2 ; nohup firefox --new-tab    http://192.168.43.42:8080/ &
-    sleep 2 ; nohup firefox --new-tab    duckduckgo.com             &
-    sleep 2 ; nohup firefox --new-tab    yandex.com                 &
-    sleep 2 ; nohup firefox --new-tab  https://github.com/AmalLight &
+    sleep 3 ; nohup firefox --new-tab    http://192.168.43.42:8080/ &
+    sleep 3 ; nohup firefox --new-tab    duckduckgo.com             &
+    sleep 3 ; nohup firefox --new-tab    yandex.com                 &
+    sleep 3 ; nohup firefox --new-tab  https://github.com/AmalLight &
     sleep 3
 fi
 
@@ -103,7 +107,8 @@ out=$(wmctrl -l | grep "${space/'x'/'6'}")
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 6 ; sleep 2 ; nohup firefox --new-window https://www.simosnap.org/chat &
-    sleep 2
+    sleep 3 ; nohup firefox --new-tab https://webchat.freenode.net/ &
+    sleep 3
 fi
 
 # --------------------------------------------------------------------------------------

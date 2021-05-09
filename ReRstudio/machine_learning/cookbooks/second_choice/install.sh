@@ -19,6 +19,8 @@ then
             sudo Rscript -e 'install.packages ( "reshape"  )'
             sudo Rscript -e 'install.packages ( "Amelia"   )'
             sudo Rscript -e 'install.packages ( "stringr"  )'
+            sudo Rscript -e 'install.packages ( "party"    )'
+            sudo Rscript -e 'install.packages ( "partykit" )'
 
         else
             enable=false
