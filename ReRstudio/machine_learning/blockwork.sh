@@ -4,45 +4,59 @@ sleep 6 ; end ;
 
 home=/home/kaumi
 work=$home/machine_learning/cookbooks/second_choice
-space='  x kaumi ' ; manager='kaumi - File Manager'
+user=kaumi ; space="  x $user " ; start='0x00e00003'"$space"
+manager="$user - File Manager" ; browser=Firefox
 
-out=$(wmctrl -l | grep "${space/'x'/'0'}" | grep "$manager" )
+wmctrl_filtered() {
+
+    number="$1" ; filter="$2"
+    
+    out=`wmctrl -l | grep "${space/'x'/$number}" | grep "$filter"`
+    
+    skip=${#start} ; echo "${out:skip:9999}"
+}
+
+# --------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
+
+out=`wmctrl_filtered 0 "$manager"`
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 0
 
     sleep 2 ; thunar $home
-    sleep 2 ; wmctrl -r $manager -b add,maximized_vert ; wmctrl -r $manager -b add,maximized_horz
-    sleep 2 ;
-
-    thunar $work $home/Git $home/my_software/collects $home/Desktop/Rcsv
-
+    sleep 2 ; out=`wmctrl_filtered 0 "$manager"`
+    
+    wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz
+    
+    sleep 2 ; thunar $work $home/Git $home/my_software/collects $home/Desktop/Rcsv
     sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'1'}") ; title='R.csv (~/Desktop/Rcsv) - gedit'
+out=`wmctrl_filtered 1 gedit`
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 1
 
     sleep 2 ; nohup gedit --new-window $home/Desktop/Rcsv/R.csv &
-    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
-    sleep 2
-
-    nohup gedit --new-document $work/install.sh \
-                               $home/my_software/collects/blockwork.sh &
+    sleep 2 ; out=`wmctrl_filtered 1 gedit`
+    
+    wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz ; 
+    
+    sleep 2 ; nohup gedit --new-document $work/install.sh \
+                                         $home/my_software/collects/blockwork.sh &
     sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'3'}")
+out=`wmctrl_filtered 3 Terminal`
 
 if (( ${#out} == 0 )) ; then
 
@@ -61,46 +75,49 @@ fi
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'4'}") ; title='Atril Document Viewer'
+out=`wmctrl_filtered 4 Atril`
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 4
 
     sleep 2 ; nohup atril &
-    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
-    sleep 2
-
-    nohup atril $work/first/Rplots.pdf $work/Machine_Learning_R_2015.pdf &
+    sleep 2 ; out=`wmctrl_filtered 4 Atril`
+    
+    wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz
+    
+    sleep 2 ; nohup atril $work/first/Rplots.pdf $work/Machine_Learning_R_2015.pdf &
     sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'7'}") ; title='VLC media player'
+out=`wmctrl_filtered 7 VLC`
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 7
 
     sleep 2 ; nohup vlc &
-    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
-    sleep 2
+    sleep 2 ; out=`wmctrl_filtered 7 VLC`
+    
+    wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz ; sleep 2
 fi
 
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'8'}") ; title='Diagram1.dia (/home/kaumi) - dia'
+out=`wmctrl_filtered 8 Diagram1.dia`
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 8
 
     sleep 2 ; nohup dia &
-    sleep 2 ; wmctrl -r $title -b add,maximized_vert ; wmctrl -r $title -b add,maximized_horz
-    sleep 3
+    sleep 2 ; out=`wmctrl_filtered 8 Diagram1.dia`
+    
+    wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz ; sleep 3
 fi
 
 # --------------------------------------------------------------------------------------
@@ -120,6 +137,7 @@ sniffing_and_wait( ) {
             echo $out
             sleep 1
         fi
+
     done
 }
 
@@ -127,7 +145,7 @@ sniffing_and_wait( ) {
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'2'}")
+out=`wmctrl_filtered 2 "$browser"` # browser
 
 if (( ${#out} == 0 )) ; then
 
@@ -136,16 +154,18 @@ if (( ${#out} == 0 )) ; then
     sleep 2 ; nohup firefox --new-window http://192.168.43.42:8888/ &
     sleep 4 ; nohup firefox --new-tab    http://192.168.43.42:8080/ &
     sleep 4
-                        nohup firefox --new-tab https://duckduckgo.com/ &
-    sniffing_and_wait ; nohup firefox --new-tab https://yandex.com/ &
+                        nohup firefox --new-tab https://duckduckgo.com/      &
+    sniffing_and_wait ; nohup firefox --new-tab https://yandex.com/          &
     sniffing_and_wait ; nohup firefox --new-tab https://github.com/AmalLight &
+    sniffing_and_wait ; nohup firefox --new-tab https://unblockit.link/      &
+    sniffing_and_wait ; nohup firefox --new-tab https://app.diagrams.net/    &
     sniffing_and_wait
 fi
     
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'5'}")
+out=`wmctrl_filtered 5 "$browser"` # music
 
 if (( ${#out} == 0 )) ; then
 
@@ -158,7 +178,7 @@ fi
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=$(wmctrl -l | grep "${space/'x'/'6'}")
+out=`wmctrl_filtered 6 "$browser"` # chat
 
 if (( ${#out} == 0 )) ; then
 
@@ -167,7 +187,8 @@ if (( ${#out} == 0 )) ; then
     sleep 2 ; nohup firefox --new-window https://simosnap.org/chat &
     
     sniffing_and_wait ; nohup firefox --new-tab https://webchat.freenode.net/ &
-    sniffing_and_wait ; nohup firefox --new-tab https://webchat.azzurra.org/ &
+    sniffing_and_wait ; nohup firefox --new-tab https://webchat.azzurra.org/  &
+    sniffing_and_wait ; nohup firefox --new-tab https://translate.yandex.com/ &
     sniffing_and_wait ;
 fi
 
