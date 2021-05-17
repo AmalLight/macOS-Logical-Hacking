@@ -57,6 +57,9 @@ fi
 # --------------------------------------------------------------------------------------
 
 out=`wmctrl_filtered 3 Terminal`
+out=$out`wmctrl_filtered 3 R`
+out=$out`wmctrl_filtered 3 Git`
+out=$out`wmctrl_filtered 3 work`
 
 if (( ${#out} == 0 )) ; then
 
@@ -76,6 +79,7 @@ fi
 # --------------------------------------------------------------------------------------
 
 out=`wmctrl_filtered 4 Atril`
+out=$out`wmctrl_filtered 4 pdf`
 
 if (( ${#out} == 0 )) ; then
 
@@ -108,14 +112,14 @@ fi
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
-out=`wmctrl_filtered 8 Diagram1.dia`
+out=`wmctrl_filtered 8 dia`
 
 if (( ${#out} == 0 )) ; then
 
     wmctrl -s 8
 
     sleep 2 ; nohup dia &
-    sleep 2 ; out=`wmctrl_filtered 8 Diagram1.dia`
+    sleep 2 ; out=`wmctrl_filtered 8 dia`
     
     wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz ; sleep 3
 fi
@@ -159,6 +163,7 @@ if (( ${#out} == 0 )) ; then
     sniffing_and_wait ; nohup firefox --new-tab https://github.com/AmalLight &
     sniffing_and_wait ; nohup firefox --new-tab https://unblockit.link/      &
     sniffing_and_wait ; nohup firefox --new-tab https://app.diagrams.net/    &
+    sniffing_and_wait ; nohup firefox --new-tab https://web.whatsapp.com/    &
     sniffing_and_wait
 fi
     

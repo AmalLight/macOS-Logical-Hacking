@@ -16,11 +16,13 @@ then
             
             sudo Rscript -e 'install.packages ( "e1071"    )'
             sudo Rscript -e 'install.packages ( "WriteXLS" )'
-            sudo Rscript -e 'install.packages ( "reshape"  )'
+            sudo Rscript -e 'install.packages ( "ggplot2"  )'
+            sudo Rscript -e 'install.packages ( "reshape2" )'
             sudo Rscript -e 'install.packages ( "Amelia"   )'
             sudo Rscript -e 'install.packages ( "stringr"  )'
             sudo Rscript -e 'install.packages ( "party"    )'
-            sudo Rscript -e 'install.packages ( "partykit" )'
+            sudo Rscript -e 'install.packages ( "caret"    )'
+            sudo Rscript -e 'install.packages ( "ROCR"     )'
 
         else
             enable=false

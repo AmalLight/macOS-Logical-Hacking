@@ -5,7 +5,8 @@ library ( reshape   )
 library ( Amelia    )
 library ( stringr   )
 library ( party     )
-library ( partykit  )
+library ( caret     )
+library ( ROCR      )
 
 # https://www.kdnuggets.com/datasets/index.html
 
@@ -110,8 +111,8 @@ trainset $ Parch    [ 1 ]
 trainset $ Embarked [ 1 ]
 
 cat ( '\n start ctree' )
-from_kit <- ctree_control ( minbucket = interest_len )
-train.ctree = ctree ( Survived ~ Pclass + Sex + Age + SibSp + Fare + Parch + Embarked , data = trainset , control=from_kit )
+
+train.ctree = ctree ( Survived ~ Pclass + Sex + Age + SibSp + Fare + Parch + Embarked , data = trainset )
 
 cat ( '\n \n Ended -> print the tree' ) ; train.ctree
 
@@ -127,3 +128,129 @@ cat ( 'Here, we use svm to show how easy it is that you can immediately use diff
 'learning algorithms on the same dataset when using R. For further information on how to use',
 'svm , please refer to Chapter 6, Classification (II) – Neural Network, SVM.', sep='\n' )
 
+# --------------------
+# --- TESTING --------
+# --------------------
+
+ctree.predict = predict ( train.ctree , testset )
+
+cat ( '\npredicted by id:\n' )
+typeof ( ctree.predict )
+testset [[ 1 ]]
+
+cat   ( '\n' )
+paste ( 'exemple for' , testset [[ 1 ]][ 1 ] , 'has status from resulted predict of:' , testset [ 1,2 ] )
+paste ( 'and has status to predict of:' , ctree.predict [ 1 ] , 'called:' , names ( ctree.predict [ 1 ] ) )
+cat   ( '\n' )
+    
+paste ( 'considering this names:' ) ; colnames ( testset )
+cat ( '\nI want to get:' ) ; testset [ 1 , c ( 3 , 5 : 8 , 10 , 12 ) ]
+
+train.ctree
+
+# model ----------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+modello <- function ( set , show=T ) {
+    sex    <- as.numeric ( set [ 2 ] )
+    classe <- as.numeric ( set [ 1 ] )
+    age    <- as.numeric ( set [ 3 ] )
+    
+    if ( show ) print ( paste ( 'set result sex:' , sex , 'classe:' , classe , 'age:' , age ) )
+    
+    if ( any ( is.na ( set ) ) ) return ( NA )
+    
+    result <- 0
+    if ( sex == 1 )
+    {
+        if ( classe == 1 | classe == 2 ) { result <- 1 }
+        else if ( classe == 3 )          { result <- 0 }
+    }
+    else if ( sex == 2 )
+    {
+        if ( classe == 2 | classe == 3 )
+        {
+            if ( age <= 3 )     { result <- 1 }
+            else if ( age > 3 ) { result <- 0 }
+        }
+        else if ( classe == 1 ) { result <- 0 }
+    }
+    return ( result )
+}
+
+# ----------------------------------------------------------------------------
+# model ----------------------------------------------------------------------
+
+cat ( '\n' ) ; paste ( 'exists any is.na in testset:' , any ( is.na ( testset ) ) )
+
+resulted_Alive <- function ( IFalive ) {
+    returnv  <- 0
+    for ( value in testset $ Survived )
+
+        if ( ! is.na ( value ) & value == IFalive ) { returnv <- ( returnv + 1 ) }
+
+    return ( returnv )
+}
+
+paste ( 'testing model:' ) ; modello ( testset [ 1 , c ( 3 , 5 , 6 ) ] )
+
+resulted_live <- 0 ; resulted_dead <- 0
+for ( i in 1 : length ( testset [[ 1 ]] ) )
+{
+    resulted <- modello ( testset [ i , c ( 3 , 5 , 6 ) ] )
+    
+    if ( ! is.na ( resulted ) )
+    
+        if      ( resulted == 1 ) { resulted_live <- resulted_live + resulted }
+        else if ( resulted == 0 ) { resulted_dead <- resulted_dead + 1        }
+}
+
+paste ( 'model->resulted live:' , resulted_live )
+paste ( 'model->resulted dead:' , resulted_dead )
+paste ( ' test->resulted live:' , resulted_Alive ( 1 ) )
+paste ( ' test->resulted dead:' , resulted_Alive ( 0 ) )
+
+contradiction <- matrix ( c ( 0 , 0 , 0 , 0 ) , nrow=2 , byrow = T , dimnames = list ( c ( 'Predict.live' , 'Predict.dead' ) , c ( 'Ref.live' , 'Ref.dead' ) ) )
+
+for ( i in 1 : length ( testset [[ 1 ]] ) )
+{
+    resulted <- modello ( testset [ i , c ( 3 , 5 , 6 ) ] , show=F )
+    
+    if ( ! is.na ( resulted ) )
+    {
+        value <- as.numeric ( testset $ Survived [ i ] ) # auto translate 0 to 1 and 1 to 2
+        
+        if ( resulted == 1 )
+        {
+           if      ( value-1 == 1 ) { contradiction [ 1,1 ] <- ( contradiction [ 1,1 ] + 1 ) }
+           else if ( value-1 == 0 ) { contradiction [ 1,2 ] <- ( contradiction [ 1,2 ] + 1 ) }
+        }
+        else if ( resulted == 0 )
+        {
+           if      ( value-1 == 1 ) { contradiction [ 2,1 ] <- ( contradiction [ 2,1 ] + 1 ) }
+           else if ( value-1 == 0 ) { contradiction [ 2,2 ] <- ( contradiction [ 2,2 ] + 1 ) }
+        }
+    }
+}
+
+cat ( '\n' )
+contradiction
+cat ( '\n' )
+Accuracy <- (
+    contradiction [ 1,1 ] + contradiction [ 2,2 ] ) /
+    length ( testset $ Survived [ ! is.na ( testset $ Survived ) ]
+)
+
+paste ( 'Accuracy:' , Accuracy ) ; cat ( '\n' )
+
+confusionMatrix ( ctree.predict , testset $ Survived )
+
+# make order - normalize
+train.ctree.prob = 1- unlist ( treeresponse ( train.ctree , testset ) , use.names=F ) [ seq ( 1 , nrow ( testset ) * 2 , 2 ) ]
+train.ctree.pred = predict ( train.ctree )
+train.ctree.prob.rocr = prediction ( train.ctree.prob , testset $ Survived )
+
+train.ctree.perf = performance ( train.ctree.prob.rocr , "tpr" , "fpr" )
+train.ctree.auc.perf = performance ( train.ctree.prob.rocr , measure = "auc" , x.measure = "cutoff" )
+
+plot ( train.ctree.perf , col = 2 , colorize = T , main = paste ( "AUC:" , train.ctree.auc.perf@y.values ) )
