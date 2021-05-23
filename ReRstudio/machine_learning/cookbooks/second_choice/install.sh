@@ -22,6 +22,7 @@ then
             sudo Rscript -e 'install.packages ( "stringr"  )'
             sudo Rscript -e 'install.packages ( "party"    )'
             sudo Rscript -e 'install.packages ( "caret"    )'
+            sudo Rscript -e 'install.packages ( "car"      )'
             sudo Rscript -e 'install.packages ( "ROCR"     )'
 
         else
