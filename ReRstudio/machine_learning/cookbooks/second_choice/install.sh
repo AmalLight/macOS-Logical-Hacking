@@ -14,16 +14,17 @@ then
         then
             sudo apt install -y r-base
             
-            sudo Rscript -e 'install.packages ( "e1071"    )'
-            sudo Rscript -e 'install.packages ( "WriteXLS" )'
-            sudo Rscript -e 'install.packages ( "ggplot2"  )'
-            sudo Rscript -e 'install.packages ( "reshape2" )'
-            sudo Rscript -e 'install.packages ( "Amelia"   )'
-            sudo Rscript -e 'install.packages ( "stringr"  )'
-            sudo Rscript -e 'install.packages ( "party"    )'
-            sudo Rscript -e 'install.packages ( "caret"    )'
-            sudo Rscript -e 'install.packages ( "car"      )'
-            sudo Rscript -e 'install.packages ( "ROCR"     )'
+            sudo Rscript -e 'install.packages ( "e1071"     )'
+            sudo Rscript -e 'install.packages ( "WriteXLS"  )'
+            sudo Rscript -e 'install.packages ( "ggplot2"   )'
+            sudo Rscript -e 'install.packages ( "reshape2"  )'
+            sudo Rscript -e 'install.packages ( "stringr"   )'
+            sudo Rscript -e 'install.packages ( "party"     )'
+            sudo Rscript -e 'install.packages ( "caret"     )'
+            sudo Rscript -e 'install.packages ( "car"       )'
+            sudo Rscript -e 'install.packages ( "rpart"     )'
+            sudo Rscript -e 'install.packages ( "modeldata" )'
+            sudo Rscript -e 'install.packages ( "class"     )'
 
         else
             enable=false
@@ -42,7 +43,7 @@ then
     echo ''
     echo 'arg 1 : install all requirements = [yes/..]'
     echo 'OR'
-    echo 'arg 2 : Directory'
-    echo 'arg 3 : File.R inside Directory'
+    echo 'arg 1 : Directory'
+    echo 'arg 2 : File.R inside Directory'
     echo ''
 fi
