@@ -24,7 +24,9 @@ then
             sudo Rscript -e 'install.packages ( "car"       )'
             sudo Rscript -e 'install.packages ( "rpart"     )'
             sudo Rscript -e 'install.packages ( "modeldata" )'
+            sudo Rscript -e 'install.packages ( "neuralnet" )'
             sudo Rscript -e 'install.packages ( "class"     )'
+            sudo Rscript -e 'install.packages ( "nnet"      )'
 
         else
             enable=false
