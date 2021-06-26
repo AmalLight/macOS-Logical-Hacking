@@ -2,6 +2,22 @@
 
 sleep 6 ; end ;
 
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -t nat -F
+sudo iptables -t mangle -F
+sudo iptables -F
+sudo iptables -X
+
+sudo ip6tables -P INPUT ACCEPT
+sudo ip6tables -P FORWARD ACCEPT
+sudo ip6tables -P OUTPUT ACCEPT
+sudo ip6tables -t nat -F
+sudo ip6tables -t mangle -F
+sudo ip6tables -F
+sudo ip6tables -X
+
 home=/home/kaumi
 work=$home/machine_learning/cookbooks/third_choice
 user=kaumi ; space="  x $user " ; start='0x00e00003'"$space"
@@ -96,9 +112,11 @@ if (( ${#out} == 0 )) ; then
     sleep 2 ; out=`wmctrl_filtered 4 Okular`    
     wmctrl -r $out -b add,maximized_vert ; wmctrl -r $out -b add,maximized_horz
     
-    sleep 2 ; nohup atril $work/ColorImages.pdf \
-                          $work/first/Rplots.pdf \
-                          $work/R_Machine_Learning_Projects_2019.pdf &
+    sleep 2 ; nohup okular $work/R_Machine_Learning_Projects_2019.pdf &
+    
+    sleep 2 ; nohup atril  $work/ColorImages.pdf  \
+                           $work/third/Rplots.pdf \
+                           $work/R_Machine_Learning_Projects_2019.pdf &
     sleep 3
 fi
 
@@ -165,7 +183,8 @@ if (( ${#out} == 0 )) ; then
 
     sleep 2 ; nohup firefox --new-window http://192.168.43.36:8888/ &
     sleep 4 ; nohup firefox --new-tab    http://192.168.43.36:8080/ &
-    sleep 4
+    sleep 3 ; nohup firefox --new-tab    http://192.168.43.36:80/   &
+    sleep 3
                         nohup firefox --new-tab https://yandex.com/          &
     sniffing_and_wait ; nohup firefox --new-tab https://github.com/AmalLight &
     sniffing_and_wait ; nohup firefox --new-tab https://unblockit.link/      &
@@ -203,5 +222,9 @@ fi
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
+echo ''
+sudo iptables -L -v -n
+
+echo ''
 read -p 'press enter for finish'
 

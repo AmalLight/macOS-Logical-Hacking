@@ -7,26 +7,29 @@ then
 
     if (( ${#@} == 1 )) ;
     then
-
         requirements=$1
 
         if [[ "$requirements" == "yes" ]] ;
         then
             sudo apt install -y r-base
             
-            sudo Rscript -e 'install.packages ( "e1071"     )'
-            sudo Rscript -e 'install.packages ( "WriteXLS"  )'
-            sudo Rscript -e 'install.packages ( "ggplot2"   )'
-            sudo Rscript -e 'install.packages ( "reshape2"  )'
-            sudo Rscript -e 'install.packages ( "stringr"   )'
-            sudo Rscript -e 'install.packages ( "party"     )'
-            sudo Rscript -e 'install.packages ( "caret"     )'
-            sudo Rscript -e 'install.packages ( "car"       )'
-            sudo Rscript -e 'install.packages ( "rpart"     )'
-            sudo Rscript -e 'install.packages ( "modeldata" )'
-            sudo Rscript -e 'install.packages ( "neuralnet" )'
-            sudo Rscript -e 'install.packages ( "class"     )'
-            sudo Rscript -e 'install.packages ( "nnet"      )'
+            sudo Rscript -e 'install.packages ( "ggplot2"        )'
+            sudo Rscript -e 'install.packages ( "corrplot"       )'
+            sudo Rscript -e 'install.packages ( "rsample"        )'
+            sudo Rscript -e 'install.packages ( "doMC"           )'
+            sudo Rscript -e 'install.packages ( "caret"          )'
+            sudo Rscript -e 'install.packages ( "devtools"       )'
+            sudo Rscript -e 'install.packages ( "randomForest"   )'
+            sudo Rscript -e 'install.packages ( "mlbench"        )'
+            sudo Rscript -e 'install.packages ( "gbm"            )'
+            sudo Rscript -e 'install.packages ( "xgboost"        )'
+            sudo Rscript -e 'install.packages ( "caretEnsemble"  )'
+            sudo Rscript -e 'install.packages ( "klaR"           )'
+            sudo Rscript -e 'install.packages ( "kernlab"        )'
+            sudo Rscript -e 'install.packages ( "kernlab"        )'
+            sudo Rscript -e 'install.packages ( "recommenderlab" )'
+            
+            sudo Rscript -e 'library ( devtools ) ; install_github( "topepo/caret/pkg/caret" )'
 
         else
             enable=false
