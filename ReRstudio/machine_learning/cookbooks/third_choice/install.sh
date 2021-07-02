@@ -28,6 +28,7 @@ then
             sudo Rscript -e 'install.packages ( "kernlab"        )'
             sudo Rscript -e 'install.packages ( "kernlab"        )'
             sudo Rscript -e 'install.packages ( "recommenderlab" )'
+            sudo Rscript -e 'install.packages ( "data.table"     )'
             
             sudo Rscript -e 'library ( devtools ) ; install_github( "topepo/caret/pkg/caret" )'
 
